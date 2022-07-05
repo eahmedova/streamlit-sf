@@ -9,12 +9,12 @@ def init_connection():
 conn = init_connection()
 
 # run query
-"""
-Without experimentsl_memo, Streamlit would run the query every time the app reruns 
-(e.g. on a widget interaction). With st.experimental_memo, it only runs when 
-the query changes or after 10 minutes (that's what ttl is for)
-"""
-@st.experimentsl_memo(ttl=600)
+
+# Without experimentsl_memo, Streamlit would run the query every time the app reruns 
+# (e.g. on a widget interaction). With st.experimental_memo, it only runs when 
+# the query changes or after 10 minutes (that's what ttl is for)
+
+@st.experimental_memo(ttl=600)
 def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
